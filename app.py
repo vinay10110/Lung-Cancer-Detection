@@ -1,13 +1,8 @@
 import streamlit as st
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
 import os
-import tempfile
 from PIL import Image
-import io
-import matplotlib.pyplot as plt
 import pandas as pd
 
 # Configure Streamlit page
@@ -156,8 +151,8 @@ def display_results(predicted_class, confidence, cancer_status, all_predictions,
             st.markdown(f"""
             <div class="cancer-detected">
                 <h3 style="color: #d32f2f; margin: 0;">⚠️ {cancer_status}</h3>
-                <p style="margin: 10px 0;"><strong>Detected Condition:</strong> {predicted_class}</p>
-                <p style="margin: 10px 0;"><strong>Confidence Level:</strong> {confidence:.2%}</p>
+                <p style="margin: 10px 0; color: #333;"><strong>Detected Condition:</strong> {predicted_class}</p>
+                <p style="margin: 10px 0; color: #333;"><strong>Confidence Level:</strong> {confidence:.2%}</p>
                 <p style="margin: 10px 0; font-size: 0.9em; color: #666;">
                     {CLASS_DESCRIPTIONS[predicted_class]}
                 </p>
@@ -167,8 +162,8 @@ def display_results(predicted_class, confidence, cancer_status, all_predictions,
             st.markdown(f"""
             <div class="no-cancer">
                 <h3 style="color: #2e7d32; margin: 0;">✅ {cancer_status}</h3>
-                <p style="margin: 10px 0;"><strong>Tissue Type:</strong> {predicted_class}</p>
-                <p style="margin: 10px 0;"><strong>Confidence Level:</strong> {confidence:.2%}</p>
+                <p style="margin: 10px 0; color: #333;"><strong>Tissue Type:</strong> {predicted_class}</p>
+                <p style="margin: 10px 0; color: #333;"><strong>Confidence Level:</strong> {confidence:.2%}</p>
                 <p style="margin: 10px 0; font-size: 0.9em; color: #666;">
                     {CLASS_DESCRIPTIONS[predicted_class]}
                 </p>
@@ -270,21 +265,6 @@ Always consult qualified healthcare professionals for medical diagnosis.
     else:
         # Instructions when no file is uploaded
         st.info("👆 Please upload a lung tissue image to begin analysis")
-        
-        # Sample images section
-        st.header("🖼️ Sample Images")
-        st.write("You can test the system with sample images from the 'sample images' folder in your project directory.")
-        
-        # Check if sample images exist
-        sample_dir = "./sample images"
-        if os.path.exists(sample_dir):
-            sample_files = [f for f in os.listdir(sample_dir) if f.lower().endswith(('.jpg', '.jpeg', '.png', '.bmp', '.tiff'))]
-            if sample_files:
-                st.write(f"Found {len(sample_files)} sample images in the project folder.")
-            else:
-                st.write("No sample images found in the sample images folder.")
-        else:
-            st.write("Sample images folder not found.")
 
 def model_info_page():
     """Model information and training details page."""
