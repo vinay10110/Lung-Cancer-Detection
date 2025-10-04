@@ -320,7 +320,7 @@ def model_info_page():
     st.subheader("📈 Training Metrics & Visualizations")
     
     # Display training plots if available
-    plots_dir = os.getenv("PLOTS_DIR", "./plots & results")
+    plots_dir = "./plots & results"
     if os.path.exists(plots_dir):
         plot_files = [f for f in os.listdir(plots_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
         

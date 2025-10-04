@@ -55,12 +55,25 @@ AI-Powered Medical Image Analysis for Lung Cancer Detection using Deep Learning.
    # The default values should work for most setups
    ```
 
-5. **Run the application**
+5. **Download Model Weights**
+   
+   You need to download the trained model weights before running the application:
+   
+   **Option 1: Lung Cancer Only Model (Recommended for this app)**
+   - Download from: [Lung Cancer Detection Weights](https://mega.nz/folder/EqInzIQS#RYUe5FHArGuBJB23WTPNVQ)
+   - Extract and place the model file in `./model2/` directory
+   
+   **Option 2: Combined Lung + Colon Cancer Model**
+   - Download from: [Lung + Colon Cancer Weights](https://mega.nz/folder/xzBDyTaa#Dc1UBX1X00qrymgM2Axjmw)
+   - Extract and place the model file in `./model/` directory
+   - Update your `.env` file with the correct `MODEL_PATH`
+
+6. **Run the application**
    ```bash
    streamlit run app.py
    ```
 
-6. **Open your browser**
+7. **Open your browser**
    - The app will automatically open at `http://localhost:8501`
 
 ## 🔧 Environment Variables
@@ -70,16 +83,43 @@ The application uses environment variables for configuration. Copy `.env.example
 | Variable | Description | Default Value |
 |----------|-------------|---------------|
 | `MODEL_PATH` | Path to the trained model file | `./model2/conv2d-lung_detection-98.73.h5` |
-| `PLOTS_DIR` | Directory containing training plots | `./plots & results` |
 
 ### Example .env file:
 ```env
 # Model Configuration
 MODEL_PATH=./model2/conv2d-lung_detection-98.73.h5
-
-# Plots Directory
-PLOTS_DIR=./plots & results
 ```
+
+## 📥 Model Weights Download
+
+### Available Models
+
+**🫁 Lung Cancer Only Model (Recommended)**
+- **Download Link**: [Lung Cancer Detection Weights](https://mega.nz/folder/EqInzIQS#RYUe5FHArGuBJB23WTPNVQ)
+- **Classes**: 3 lung tissue types
+- **Accuracy**: 98.73%
+- **File Location**: Place in `./model2/` directory
+- **Best For**: This Streamlit application (lung cancer detection only)
+
+**🫁🦠 Combined Lung + Colon Cancer Model**
+- **Download Link**: [Lung + Colon Cancer Weights](https://mega.nz/folder/xzBDyTaa#Dc1UBX1X00qrymgM2Axjmw)
+- **Classes**: 5 tissue types (lung + colon)
+- **File Location**: Place in `./model/` directory
+- **Best For**: Research projects requiring both lung and colon cancer detection
+- **Note**: Requires updating `MODEL_PATH` in `.env` file
+
+### Setup Instructions
+
+1. **Choose your model** based on your needs
+2. **Download** from the appropriate MEGA link
+3. **Extract** the downloaded files
+4. **Place** the model file in the correct directory:
+   - Lung only: `./model2/conv2d-lung_detection-98.73.h5`
+   - Lung + Colon: `./model/conv2d-lung_cancer_detection-99.68.h5`
+5. **Update** your `.env` file if using the combined model:
+   ```env
+   MODEL_PATH=./model/conv2d-lung_cancer_detection-99.68.h5
+   ```
 
 ## 📊 Key Results & Visualizations
 
