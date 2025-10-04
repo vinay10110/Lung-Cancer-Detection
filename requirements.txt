@@ -2,5 +2,5 @@ streamlit
 numpy
 tensorflow
 Pillow
-matplotlib
 pandas
+python-dotenv

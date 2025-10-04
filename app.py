@@ -4,6 +4,10 @@ from tensorflow.keras.models import load_model
 import os
 from PIL import Image
 import pandas as pd
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Configure Streamlit page
 st.set_page_config(
@@ -59,16 +63,18 @@ st.markdown("""
 @st.cache_resource
 def load_lung_cancer_model():
     """Load the lung cancer detection model."""
-    MODEL_PATH = "./model2/conv2d-lung_detection-98.73.h5"
+    # Get model path from environment variable with fallback to default
+    MODEL_PATH = os.getenv("MODEL_PATH", "./model2/conv2d-lung_detection-98.73.h5")
     
     if not os.path.exists(MODEL_PATH):
         st.error(f"❌ Model file not found at {MODEL_PATH}")
+        st.error("💡 Make sure to set the MODEL_PATH environment variable or place the model in the default location.")
         st.stop()
     
     try:
         with st.spinner("Loading AI model..."):
             model = load_model(MODEL_PATH)
-        st.success("✅ AI Model loaded successfully!")
+        st.success(f"✅ AI Model loaded successfully from: {MODEL_PATH}")
         return model
     except Exception as e:
         st.error(f"❌ Error loading model: {str(e)}")
@@ -276,10 +282,10 @@ def model_info_page():
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         **Model Architecture:**
         - **Type**: Convolutional Neural Network (CNN)
-        - **Model File**: conv2d-lung_detection-98.73.h5
+        - **Model File**: {os.getenv("MODEL_PATH", "./model2/conv2d-lung_detection-98.73.h5")}
         - **Input Size**: 224 × 224 × 3 (RGB)
         - **Framework**: TensorFlow/Keras
         - **Classes**: 3 lung tissue types
@@ -314,7 +320,7 @@ def model_info_page():
     st.subheader("📈 Training Metrics & Visualizations")
     
     # Display training plots if available
-    plots_dir = "./plots"
+    plots_dir = os.getenv("PLOTS_DIR", "./plots & results")
     if os.path.exists(plots_dir):
         plot_files = [f for f in os.listdir(plots_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
         
