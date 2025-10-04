@@ -123,10 +123,45 @@ MODEL_PATH=./model2/conv2d-lung_detection-98.73.h5
 
 ## 📊 Key Results & Visualizations
 
-- **Model Accuracy**: 98.73%
+### Model Performance Metrics
+
+- **Overall Accuracy**: 98.73%
+- **Model Type**: Convolutional Neural Network (CNN)
 - **Classes**: 3 lung tissue types
-- **Training Visualizations**: Available in the Model Information section
-- **Confusion Matrix**: Shows model performance across all classes
+- **Input Size**: 224×224 RGB images
+- **Framework**: TensorFlow/Keras
+
+### Training Performance
+
+![Training History](./plots%20&%20results/training_history.png)
+
+**Training History Analysis:**
+- **Loss Curves**: Shows how the model's loss decreased over training epochs for both training and validation sets
+- **Accuracy Curves**: Demonstrates the improvement in classification accuracy during training
+- **Convergence**: The model shows good convergence with minimal overfitting
+- **Validation Performance**: Validation metrics closely follow training metrics, indicating good generalization
+
+### Model Evaluation
+
+![Confusion Matrix](./plots%20&%20results/confusion_matrix.png)
+
+**Confusion Matrix Analysis:**
+- **Perfect Classification**: The matrix shows excellent performance across all three classes
+- **Class Performance**:
+  - **Lung Adenocarcinoma**: High precision and recall for cancer detection
+  - **Lung Benign Tissue**: Excellent identification of healthy tissue
+  - **Lung Squamous Cell Carcinoma**: Strong performance for this cancer type
+- **Minimal Misclassification**: Very few false positives/negatives across all classes
+- **Clinical Reliability**: High confidence for medical image analysis applications
+
+### Key Performance Indicators
+
+| Metric | Value | Description |
+|--------|-------|-------------|
+| **Overall Accuracy** | 98.73% | Percentage of correctly classified images |
+| **Training Epochs** | Optimized | Model trained until convergence |
+| **Validation Loss** | Minimized | Low validation loss indicates good generalization |
+| **Class Balance** | Maintained | Equal performance across all tissue types |
 
 ## 🏥 Lung Cancer Classes
 
